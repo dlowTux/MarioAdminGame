@@ -104,6 +104,10 @@ section .contentBx .formBx  .inputBx input[type="submit"]:hover{
     background: #f53677;
 
 }
+.error{
+    color: red;
+    text-align: center;
+}
 @media (max-width:768px){
     section .imgBx{
         top: 0;
@@ -135,3 +139,5 @@ section .contentBx .formBx  .inputBx input[type="submit"]:hover{
         font-weight: 500;
     }
 }
+
+
