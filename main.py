@@ -1,9 +1,11 @@
 import Login
-from flask import Flask,render_template,request,jsonify,session
+from flask import Flask,render_template,request,jsonify,session,g,url_for,redirect
 app=Flask(__name__)
+app.secret_key = "key_hash"
 @app.route('/')
-def home():
+def index():
     return  render_template('index.html')
+
 @app.route('/login', methods=['GET','POST'])
 def login():
     if request.method=='POST':
@@ -16,5 +18,16 @@ def login():
         else:
             return jsonify({'response':False})
     return render_template('login.html')
+
+@app.before_request
+def before_request():
+    g.user = None
+    if 'user' in session:
+        g.user = session['user']
+@app.route('/home')
+def home():
+    if g.user:
+        return render_template('home.html')
+    return redirect(url_for('login'))
 if __name__ =='__main__':
     app.run(debug=True)

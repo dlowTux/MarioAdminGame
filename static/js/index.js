@@ -23,7 +23,7 @@ document
             console.log(data['response'])
             if (data['response'] == true) {
                 //redirect to the home page
-                window.location.replace("http://localhost:5000/");
+                window.location.replace("http://localhost:5000/home");
             } else {
                 //add an span in the html to indicate that the password or user
                 //was not correct
