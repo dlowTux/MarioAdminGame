@@ -5,19 +5,27 @@
 <br />
 <br />
 <div class="container">
-    <div class="row g-3 align-items-center">
-        <div class="col-auto">
-            <label class="col-form-label">User name</label>
-        </div>
-        <form id="formplayer">
+    <form id="formplayer">
+        <div class="row g-3 align-items-center">
             <div class="col-auto">
-                <input type="text" id="txtusername" class="form-control" />
+                <label class="col-form-label">User name</label>
+            </div>
+
+            <div class="col-auto">
+                <input
+                    type="text"
+                    id="txtusername"
+                    class="form-control"
+                    required
+                />
             </div>
             <div class="col-auto">
                 <button class="btn btn-danger">Register</button>
             </div>
-        </form>
-    </div>
+
+            <div class="error" id="errors"></div>
+        </div>
+    </form>
     <div class="mt-5">
         <div class="centro">
             <div class="row g-3 align-items-center">
@@ -29,7 +37,7 @@
                 <div class="col-auto">
                     <input type="text" id="textbuscar" class="form-control" />
                 </div>
-                <div class=" mt-2 col-auto">
+                <div class="mt-2 col-auto">
                     <button class="btn btn-primary">Search</button>
                 </div>
             </div>
@@ -44,15 +52,21 @@
                 </tr>
             </thead>
             <tbody>
+                {% for player in players %}
                 <tr>
-                    <th>China toxica</th>
+                    <th>{{player[1]}}</th>
                     <td>
-                        <img src="static/img/delete2.png" />
+                        <a href="">
+                            <img src="static/img/delete2.png" />
+                        </a>
                     </td>
                     <td>
-                        <img src="static/img/updated.png" />
+                        <a>
+                            <img src="static/img/updated.png" />
+                        </a>
                     </td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

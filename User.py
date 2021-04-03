@@ -1,6 +1,6 @@
 import db
 class User:
-    def GetAllUser(self):
+    def GetAllPlayers(self):
         data=db.Database().GetPlayer()
         if data!=None:
             return data

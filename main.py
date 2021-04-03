@@ -37,9 +37,12 @@ def home():
 def players():
     if g.user:
         return render_template(
-                'players.html'
+                'players.html',
+                players=User.User().GetAllPlayers()
                 )
+
     return redirect(url_for('login'))
+
 @app.route('/RegisterUser', methods=['GET','POST'])
 def  registeruser():
     print('Aqui')
