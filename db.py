@@ -63,3 +63,15 @@ class Database:
         except Exception as e:
             print(e)
             return False
+    def GetAPlayer(self,name_player):
+        sql='select * from player where id_player like %s'
+        try:
+            self.cursor.execute(sql,('%'+name_player+'%'))
+            data=self.cursor.fetchall()
+            if data!=None:
+                return data
+            else:
+                return None
+        except Exception as e:
+            print(e)
+            return None

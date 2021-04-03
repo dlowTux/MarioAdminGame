@@ -103,6 +103,10 @@ section .contentBx .formBx .inputBx input[type="submit"]:hover {
     color: red;
     text-align: center;
 }
+.notices{
+    text-align: center;
+    color: #000;
+}
 .centro {
     display: flex;
     justify-content: center;
