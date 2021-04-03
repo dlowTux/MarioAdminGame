@@ -91,6 +91,9 @@ UUID(),
 );
 
 select id_user from user where user='' and password='';
-
 select * from player;
+insert into player values (
+    UUID(),
+    'USER_NAME'
+);
 

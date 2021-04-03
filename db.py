@@ -44,3 +44,22 @@ class Database:
         except Exception as e:
             print(e)
             return None
+    def GetUUID(self):
+        sql='SELECT UUID() AS id'
+        try:
+            self.cursor.execute(sql)
+            data=self.cursor.fetchone()
+            return data
+        except Exception as e:
+            print(e)
+            return None
+    def InsertPlayer(self, username):
+        sql='insert into player values (%s,%s)'
+        try:
+            d=self.GetUUID()
+            self.cursor.execute(sql, (d[0],username))
+            self.connection.commit()
+            return True
+        except Exception as e:
+            print(e)
+            return False

@@ -40,6 +40,17 @@ def players():
                 'players.html'
                 )
     return redirect(url_for('login'))
+@app.route('/RegisterUser', methods=['GET','POST'])
+def  registeruser():
+    print('Aqui')
+    if request.method=='POST':
+        print('Entrando')
+        data=request.get_json()
+        usuario=data['username']
+        r=User.User().RegisterUser(usuario)
+        print(r)
+        return jsonify({'response':r})
+    return 'No'
 
 if __name__ =='__main__':
     app.run(debug=True)

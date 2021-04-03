@@ -3,8 +3,14 @@ class User:
     def GetAllUser(self):
         data=db.Database().GetPlayer()
         if data!=None:
-            print(data)
             return data
         else:
             return []
+    def RegisterUser(self,username):
+        if db.Database().InsertPlayer(username):
+            print('True')
+            return True
+        else:
+            print(False)
+            return False
 
