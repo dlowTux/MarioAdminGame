@@ -90,5 +90,7 @@ UUID(),
 'BF1E94ECC97F5F918421B9A0E9E3C6F2'
 );
 
-select id_user from user where user='' 
-and password='';
+select id_user from user where user='' and password='';
+
+select * from player;
+

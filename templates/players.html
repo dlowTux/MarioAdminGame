@@ -1,0 +1,60 @@
+{% extends "layout.html" %} {% block content %}
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="container">
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label class="col-form-label">User name</label>
+        </div>
+        <form id="formplayer">
+            <div class="col-auto">
+                <input type="text" id="txtusername" class="form-control" />
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-danger">Register</button>
+            </div>
+        </form>
+    </div>
+    <div class="mt-5">
+        <div class="centro">
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="inputPassword6" class="col-form-label"
+                        >Search</label
+                    >
+                </div>
+                <div class="col-auto">
+                    <input type="text" id="textbuscar" class="form-control" />
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </div>
+
+        <table class="table mt- mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">Player</th>
+                    <th scope="col">Delete</th>
+                    <th scope="col">Update</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>China toxica</th>
+                    <td>
+                        <img src="static/img/delete2.png" />
+                    </td>
+                    <td>
+                        <img src="static/img/updated.png" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock%}
