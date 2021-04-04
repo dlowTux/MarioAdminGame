@@ -42,7 +42,7 @@ class Database:
             return None
 
     def GetPlayer(self):
-        sql='select * from player'
+        sql='select * from player order by name_player'
         try:
             self.cursor.execute(sql)
             data=self.cursor.fetchall()
@@ -91,7 +91,7 @@ class Database:
             print (e)
             return False
     def GetAPlayer(self,name_player):
-        sql='select * from player where name_player like %s'
+        sql='select * from player where name_player like %s order by name_player'
         try:
             self.cursor.execute(sql,('%'+name_player+'%'))
             data=self.cursor.fetchall()
