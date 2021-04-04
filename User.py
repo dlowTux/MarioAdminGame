@@ -17,3 +17,5 @@ class User:
         data=db.Database().GetAPlayer(name_player)
         print(data)
         return data
+    def DeleteUser(self,id_player):
+        return db.Database().DeletePlayer(id_player)

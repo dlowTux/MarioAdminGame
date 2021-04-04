@@ -1,0 +1,22 @@
+{% extends "layout.html" %} {% block content %}
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="container">
+    <div class="centro">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Are you sure to delete the player</h5>
+                <p class="card-text">
+                    You will not recuperate it
+                </p>
+                <a href="/players" class=" btn btn-primary">Cancel</a>
+                <a href="/delete/{{id_p}}" class="btn btn-danger">Delete it</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

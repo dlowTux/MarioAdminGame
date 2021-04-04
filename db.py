@@ -63,6 +63,15 @@ class Database:
         except Exception as e:
             print(e)
             return False
+    def DeletePlayer(self,id_player):
+        sql='DELETE from player where id_player=%s'
+        try:
+            self.cursor.execute(sql,(id_player))
+            self.connection.commit()
+            return True
+        except Exception as e:
+            print(e)
+            return False
     def GetAPlayer(self,name_player):
         sql='select * from player where name_player like %s'
         try:

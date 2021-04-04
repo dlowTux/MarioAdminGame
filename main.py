@@ -63,5 +63,20 @@ def GetsPlayer(name):
         return jsonify({'response':data})
     else:
         return 'No'
+@app.route('/DeletePlayer/<id_player>')
+def DeletePlayer(id_player):
+    if g.user:
+        #User.User().DeleteUser(id_player)
+        return  render_template('deleteplayer.html',id_p=id_player)
+    else:
+        return 'No'
+@app.route('/delete/<player>')
+def deletesplayer(player):
+    if g.user:
+        User.User().DeleteUser(player)
+        return redirect(url_for('players'))
+    else:
+        return 'No'
+
 if __name__ =='__main__':
     app.run(debug=True)

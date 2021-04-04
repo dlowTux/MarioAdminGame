@@ -1,3 +1,4 @@
+
 function GenerateTable() {
     const table = document.getElementById("table-players");
     table.innerHTML = "";
@@ -18,12 +19,13 @@ function GenerateTable() {
                     var tr = document.createElement("tr");
                     tr.innerHTML = `<td>${data["response"][i][1]}</td>
                     <td>
-                        <a href="DeletePlayer/${data["response"][i][0]}">
+                        <a name="delete" 
+                        href="/DeletePlayer/${data["response"][i][0]}">
                             <img src="static/img/delete2.png" />
                         </a>
                     </td>
                     <td>
-                        <a href="UpdatePlayer/${data["response"][i][0]}">
+                        <a href="/UpdatePlayer/${data["response"][i][0]}">
                             <img src="static/img/updated.png" />
                         </a>
                     </td>
@@ -60,7 +62,8 @@ document.getElementById("form-search").addEventListener("submit", function (e) {
                 var tr = document.createElement("tr");
                 tr.innerHTML = `<td>${data["response"][i][1]}</td>
                     <td>
-                        <a href="DeletePlayer/${data["response"][i][0]}">
+                        <a href="DeletePlayer/${data["response"][i][0]}" name="delete"
+                        >
                             <img src="static/img/delete2.png" />
                         </a>
                     </td>
@@ -110,3 +113,6 @@ document.getElementById("formplayer").addEventListener("submit", function (e) {
             }
         });
 });
+
+
+
