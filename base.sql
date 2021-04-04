@@ -91,4 +91,11 @@ UUID(),
 );
 
 
-
+insert into clan values
+(UUID(),'Green'),
+(UUID(),'Yellow'),
+(UUID(),'Blue'),
+(UUID(),'Pink'),
+(UUID(),'Purple'),
+(UUID(),'Orange'),
+(UUID(),'Red');

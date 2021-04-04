@@ -1,4 +1,20 @@
 
+function GenerateTd(data) {
+    return `<td>${data[1]}</td>
+            <td>
+                <a href="/DeletePlayer/${data[0]}" class="btn btn-delete" >
+                    <img src="static/img/delete2.png" />
+                </a>
+            </td>
+            <td>
+                <a
+                   href='/UpdatePlayer/${data[0]}' 
+                >
+                    <img src="static/img/updated.png" />
+                </a>
+            </td>
+                     `;
+}
 function GenerateTable() {
     const table = document.getElementById("table-players");
     table.innerHTML = "";
@@ -17,19 +33,7 @@ function GenerateTable() {
 
                 for (var i in data["response"]) {
                     var tr = document.createElement("tr");
-                    tr.innerHTML = `<td>${data["response"][i][1]}</td>
-                    <td>
-                        <a name="delete" 
-                        href="/DeletePlayer/${data["response"][i][0]}">
-                            <img src="static/img/delete2.png" />
-                        </a>
-                    </td>
-                    <td>
-                        <a href="/UpdatePlayer/${data["response"][i][0]}">
-                            <img src="static/img/updated.png" />
-                        </a>
-                    </td>
-                     `;
+                    tr.innerHTML = GenerateTd(data['response'][i]);
                     table.append(tr);
                 }
             } else {
@@ -60,21 +64,10 @@ document.getElementById("form-search").addEventListener("submit", function (e) {
             table.innerHTML = "";
             for (var i in data["response"]) {
                 var tr = document.createElement("tr");
-                tr.innerHTML = `<td>${data["response"][i][1]}</td>
-                    <td>
-                        <a href="DeletePlayer/${data["response"][i][0]}" name="delete"
-                        >
-                            <img src="static/img/delete2.png" />
-                        </a>
-                    </td>
-                    <td>
-                        <a href="UpdatePlayer/${data["response"][i][0]}">
-                            <img src="static/img/updated.png" />
-                        </a>
-                    </td>
-                     `;
+                tr.innerHTML = GenerateTd(data["response"][i]);
                 table.append(tr);
             }
+
         });
 });
 

@@ -77,6 +77,11 @@ def deletesplayer(player):
         return redirect(url_for('players'))
     else:
         return 'No'
-
+@app.route('/UpdatePlayer/<id_player>')
+def UpdatePlayer(id_player):
+    if g.user:
+        return render_template('UpdatePlayers.html')
+    else:
+        return 'No'
 if __name__ =='__main__':
     app.run(debug=True)
