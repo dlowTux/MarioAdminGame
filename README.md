@@ -9,3 +9,8 @@ Install mariadb
 Run the file base.sql
 ### Setting
 In the file db.py set your user and password of mariadb
+### Screenshots
+![](./1.png)
+![](./3.png)
+![](./2.png)
+![](./4.png)
