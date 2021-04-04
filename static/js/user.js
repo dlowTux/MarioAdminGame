@@ -39,6 +39,42 @@ function GenerateTable() {
             }
         });
 }
+document.getElementById("form-search").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const log = document.querySelector("#errors");
+    log.innerHTML = " ";
+    const text = document.getElementById("textbuscar").value;
+    var url = "/Player/" + text;
+    fetch(url, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then((resp) => resp.json())
+        .then((data) => {
+            //reload the page
+            const table = document.getElementById("table-players");
+            table.innerHTML = "";
+            for (var i in data["response"]) {
+                var tr = document.createElement("tr");
+                tr.innerHTML = `<td>${data["response"][i][1]}</td>
+                    <td>
+                        <a href="DeletePlayer/${data["response"][i][0]}">
+                            <img src="static/img/delete2.png" />
+                        </a>
+                    </td>
+                    <td>
+                        <a href="UpdatePlayer/${data["response"][i][0]}">
+                            <img src="static/img/updated.png" />
+                        </a>
+                    </td>
+                     `;
+                table.append(tr);
+            }
+        });
+});
+
 document.getElementById("formplayer").addEventListener("submit", function (e) {
     e.preventDefault();
     const log = document.querySelector("#errors");
@@ -58,14 +94,12 @@ document.getElementById("formplayer").addEventListener("submit", function (e) {
             //reload the page
             if (data["response"] == true) {
                 // try to just add the last element insert
-                var la = document.createElement('label')
-                la.innerText =
-                    "Player was added successfully";
+                var la = document.createElement("label");
+                la.innerText = "Player was added successfully";
                 la.classList.add("notices");
                 log.append(la);
                 GenerateTable();
                 document.getElementById("formplayer").reset();
-
             } else {
                 //adding the eror to le log
                 const label = document.createElement("label");

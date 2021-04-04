@@ -64,7 +64,7 @@ class Database:
             print(e)
             return False
     def GetAPlayer(self,name_player):
-        sql='select * from player where id_player like %s'
+        sql='select * from player where name_player like %s'
         try:
             self.cursor.execute(sql,('%'+name_player+'%'))
             data=self.cursor.fetchall()

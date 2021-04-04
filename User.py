@@ -13,4 +13,7 @@ class User:
         else:
             print(False)
             return False
-
+    def GetPlayer(self,name_player):
+        data=db.Database().GetAPlayer(name_player)
+        print(data)
+        return data

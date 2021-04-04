@@ -56,5 +56,12 @@ def GetAllPlayer():
     if g.user:
         return jsonify({ 'response':User.User().GetAllPlayers()})
     return jsonify({'response':False})
+@app.route('/Player/<name>')
+def GetsPlayer(name):
+    if g.user:
+        data=User.User().GetPlayer(name)
+        return jsonify({'response':data})
+    else:
+        return 'No'
 if __name__ =='__main__':
     app.run(debug=True)
