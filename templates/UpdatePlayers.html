@@ -1,2 +1,41 @@
 {% extends "layout.html" %} {% block content %}
+<br />
+<br />
+<br />
+<br />
+<br />
+<form id="formUpdate">
+    <div class="container">
+        <div class="centro">
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="inputPassword6" class="col-form-label"
+                        >User name</label
+                    >
+                </div>
+                <div class="col-auto">
+                    <input
+                        type="text"
+                        id="txtUser"
+                        value="{{user[0]}}"
+                        required
+                    />
+                    <input id='txtid'
+                           value={{id_user}}
+                           type="hidden"
+                    >
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-primary">
+                        Update
+                    </button>
+                </div>
+            </div>
+            <div id='errors' class="error">
+            </div>
+        </div>
+    </div>
+</form>
+<script src="{{url_for('static', filename='js/updateplayer.js')}}"></script>
+
 {% endblock%}

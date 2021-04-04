@@ -77,11 +77,21 @@ def deletesplayer(player):
         return redirect(url_for('players'))
     else:
         return 'No'
-@app.route('/UpdatePlayer/<id_player>')
+@app.route('/UpdatePlayer/<id_player>', methods=['GET','POST'])
 def UpdatePlayer(id_player):
     if g.user:
-        return render_template('UpdatePlayers.html')
-    else:
-        return 'No'
+        if request.method=='GET':
+            return render_template(
+                    'UpdatePlayers.html',
+                    user=User.User().GetNamePlayer(id_player),
+                    id_user=id_player
+                    )
+        if request.method=='POST':
+            data=request.get_json()
+            name_user=data['username'][0]
+            return jsonify({'response':User.User().UpdatePlayer(id_player,name_user)})
+
+    return 'No'
+
 if __name__ =='__main__':
     app.run(debug=True)

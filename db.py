@@ -1,3 +1,4 @@
+from logging import exception
 import pymysql
 class Database:
     
@@ -20,7 +21,15 @@ class Database:
         except Exception as e:
             print(e)
             return None
-
+    def GetNamePlayer(self,id_player):
+        sql='select name_player from player where id_player=%s'
+        try:
+            self.cursor.execute(sql,(id_player))
+            data=self.cursor.fetchone()
+            return data
+        except Exception as e:
+            print(e)
+            return None
     def login(self,user,password):
         sql = 'SELECT id_user FROM user WHERE name_user=%s AND password=%s'
         try:
@@ -71,6 +80,15 @@ class Database:
             return True
         except Exception as e:
             print(e)
+            return False
+    def UpdatePlayer(self,id_player,name_player):
+        sql='Update player set name_player=%s where id_player=%s'
+        try:
+            self.cursor.execute(sql,(name_player,id_player))
+            self.connection.commit()
+            return True
+        except Exception as e:
+            print (e)
             return False
     def GetAPlayer(self,name_player):
         sql='select * from player where name_player like %s'
