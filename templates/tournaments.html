@@ -1,2 +1,91 @@
 {% extends "layout.html" %} {% block content %}
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="container">
+    <div class="centro">
+        <h3>Create a tournament</h3>
+    </div>
+
+    <div class="centro">
+        <form id="formulariotournament">
+            <label>Name of the tournament</label>
+            <input type="text" id="txtname" required />
+            <label>Type</label>
+            <select>
+                <option>Teams</option>
+                <option>Single</option>
+            </select>
+
+            <button class="mt-1 btn btn-primary">Register</button>
+        </form>
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <h3>Single tournament</h3>
+
+            <form id="formregister">
+                <label>Tournament</label>
+                <select id="id_tournament" class="form-select">
+                    <option value="">
+                        Torneo de verano individual 2021
+                    </option>
+                </select>
+                <label class="mt-4">Player</label>
+                <select id="id_player" class="form-select">
+                    <option>China toxica</option>
+                </select>
+                <div class="centro">
+                    <button class="mt-5 btn btn-primary boton">Agregar</button>
+                </div>
+            </form>
+            <h3 class="mt-5">Admin Single</h3>
+            <form>
+                <div class="row">
+                    <div class="col">
+                        <select class="form-select">
+                            <option>Torneo de verano individual 2021</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <h3>Teams tournament</h3>
+            <form id="formregister">
+                <label>Tournament</label>
+                <select id="id_tournament" class="form-select">
+                    <option value="">
+                        Torneo de verano equipos 2021
+                    </option>
+                </select>
+                <label class="mt-4">Player</label>
+                <select id="id_player" class="form-select">
+                    <option>Rojo</option>
+                </select>
+                <div class="centro">
+                    <button class="mt-5 btn btn-primary boton">Agregar</button>
+                </div>
+            </form>
+            <h3 class="mt-5">Admin Teams</h3>
+            <form>
+                <div class="row">
+                    <div class="col">
+                        <select class="form-select">
+                            <option>Torneo de verano individual 2021</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock%}
