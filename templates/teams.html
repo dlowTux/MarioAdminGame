@@ -1,0 +1,61 @@
+{% extends "layout.html" %} {% block content %}
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="container">
+    <h1>Teams</h1>
+    <div class="row">
+        {% for x in clans %}
+        <div class="col">
+            <table class="table {{x[1]}}">
+                <thead>
+                    <th>{{x[1]}}</th>
+                    <th>Delete</th>
+                </thead>
+                <tbody>
+                    {% for i in x[2] %}
+                    <tr>
+                        <td>{{i[0]}}</td>
+                        <td>
+                            <a>
+                                <img src="static/img/delete2.png" />
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="centro mt-5">
+        <a  class="btn btn-danger ">Reset teams</a>
+    </div>
+
+    <div class="formulario mt-5">
+        <form name="formteams" action="/AddTeam" method="POST">
+            <div class="mb-3">
+                <label for="disabledTextInput" class="form-label">Team</label>
+                <select name="txtteams" class="form-select">
+                    {% for x in clans %}
+                    <option value="{{x[0]}}">{{x[1]}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="disabledSelect" class="form-label">Player</label>
+                <select name="txtuser" class="form-select">
+                    {% for i in players %}
+                    <option value="{{i[0]}}">{{i[1]}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="centro mt-5">
+                <button type="submit" class="btn btn-primary boton">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock%}

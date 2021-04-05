@@ -1,6 +1,7 @@
 import Login
 from flask import Flask,render_template,request,jsonify,session,g,url_for,redirect
 import User
+import Teams
 app=Flask(__name__)
 app.secret_key = "key_hash"
 
@@ -92,6 +93,24 @@ def UpdatePlayer(id_player):
             return jsonify({'response':User.User().UpdatePlayer(id_player,name_user)})
 
     return 'No'
-
+@app.route('/teams')
+def teams():
+    if g.user:
+        return render_template(
+                'teams.html',
+                clans=Teams.Team().GetTeams(),
+                players=User.User().GetAllPlayers(),
+                )
+    return 'No'
+@app.route('/AddTeam',methods=['POST'])
+def addteam():
+    if g.user:
+        if request.method=='POST':
+            team=request.form['txtteams']
+            user=request.form['txtuser']
+            Teams.Team().AddPlayerClan(team,user)
+            return redirect(url_for('teams'))
+        pass
+    return 'No'
 if __name__ =='__main__':
     app.run(debug=True)

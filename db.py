@@ -1,4 +1,3 @@
-from logging import exception
 import pymysql
 class Database:
     
@@ -90,6 +89,7 @@ class Database:
         except Exception as e:
             print (e)
             return False
+
     def GetAPlayer(self,name_player):
         sql='select * from player where name_player like %s order by name_player'
         try:
@@ -102,3 +102,43 @@ class Database:
         except Exception as e:
             print(e)
             return None
+
+    def AddPlayerClan(self,id_player,id_clan):
+        sql='insert into user_clan values (%s,%s)'
+        try:
+            self.cursor.execute(sql,(id_clan,id_player))
+            self.connection.commit()
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def GetTeams(self):
+        sql='select * from clan'
+        try:
+            self.cursor.execute(sql)
+            data=self.cursor.fetchall()
+            return data
+        except Exception as e:
+            print(e)
+            return None
+    def GetMembersOfClans(self):
+        clans=[]
+        for x in self.GetTeams():
+            clans.append(list(x))
+        try:
+            count=0
+            for clan in clans:
+                sql='select p.name_player from user_clan uc inner join player p on p.id_player=uc.id_player where uc.id_clan=%s'
+                self.cursor.execute(sql,(clan[0]))
+                c=self.cursor.fetchall()
+                if c!=None:
+                    clans[count].append(c)
+                else:
+                    clans[count].append([])
+                count+=1
+            return clans
+
+        except Exception as e:
+            print('error ',e)
+            return []

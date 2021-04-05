@@ -114,7 +114,47 @@ section .contentBx .formBx .inputBx input[type="submit"]:hover {
     flex-wrap: wrap;
     text-align: center;
 }
+.formulario{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.boton{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.Green{
+    background: green;
+    color: #fff;
+}
+.Yellow{
+    background: yellow;
+}
+.Blue{
+    background: blue;
+    color: #fff;
+}
+.Pink{
+    background: pink;
 
+}
+.Purple{
+    background: purple;
+    color: #fff;
+}
+.Orange{
+    background: orange;
+    color: #fff;
+}
+.RED{
+    background: red;
+    color: #fff;
+}
+.Red{
+    background: red;
+    color: #fff;
+}
 @media (max-width: 768px) {
     section .imgBx {
         top: 0;
