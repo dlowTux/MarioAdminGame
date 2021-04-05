@@ -124,5 +124,8 @@ def resetclans():
         Teams.Team().ResetClans()
         return redirect(url_for('teams'))
     return 'No'
+@app.route('/tournament')
+def tournament():
+    return render_template('tournaments.html')
 if __name__ =='__main__':
     app.run(debug=True)
