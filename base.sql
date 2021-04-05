@@ -25,8 +25,7 @@ create table user_clan(
 create table tournament(
     id_tournament varchar(200) primary key not null,
     tournament_name varchar(100),
-    date_start date not null,
-    date_finish date not null
+    type_ int not null
 );
 create table states(
     id_state varchar(200) primary key not null,
