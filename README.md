@@ -1,18 +1,19 @@
 # MarioAdminGame
 A system to administer and see the result of the games
 ## Run Local
-### Libraries
-pip install flask
-pip install pymysql
+### installation
+- pip install flask
+- pip install pymysql
 ### Database
-Install mariadb
-Run the file base.sql
+- Install mariadb
+- Run the file base.sql (copy and paste in a terminal)
 ### Setting
 In the file db.py set your user and password of mariadb
 ### Screenshots
 #### Login
-![](./3.png)
 ![](./2.png)
 #### Player page
 ![](./1.png)
-![](./4.png)
+#### Teams page
+![](./3.png)
+
