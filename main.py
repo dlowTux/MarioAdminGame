@@ -112,5 +112,17 @@ def addteam():
             return redirect(url_for('teams'))
         pass
     return 'No'
+@app.route('/DeleteMemberClan/<id_player>')
+def DeleteMemberClan(id_player):
+    if g.user:
+        Teams.Team().DeleteMemberClan(id_player)
+        return redirect(url_for('teams'))
+    return 'No'
+@app.route('/ResetClans')
+def resetclans():
+    if g.user:
+        Teams.Team().ResetClans()
+        return redirect(url_for('teams'))
+    return 'No'
 if __name__ =='__main__':
     app.run(debug=True)

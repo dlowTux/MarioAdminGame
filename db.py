@@ -129,7 +129,7 @@ class Database:
         try:
             count=0
             for clan in clans:
-                sql='select p.name_player from user_clan uc inner join player p on p.id_player=uc.id_player where uc.id_clan=%s'
+                sql='select p.name_player,p.id_player from user_clan uc inner join player p on p.id_player=uc.id_player where uc.id_clan=%s'
                 self.cursor.execute(sql,(clan[0]))
                 c=self.cursor.fetchall()
                 if c!=None:
@@ -142,3 +142,22 @@ class Database:
         except Exception as e:
             print('error ',e)
             return []
+    def DeleteAMember(self,id_player):
+        sql='delete from user_clan where id_player=%s'
+        try:
+            self.cursor.execute(sql,(id_player))
+            self.connection.commit()
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def ResetClans(self):
+        sql='delete from user_clan'
+        try:
+            self.cursor.execute(sql)
+            self.connection.commit()
+            return True
+        except Exception as e:
+            print(e)
+            return False

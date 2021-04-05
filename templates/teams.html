@@ -19,7 +19,7 @@
                     <tr>
                         <td>{{i[0]}}</td>
                         <td>
-                            <a>
+                            <a  class='btn-delete' href="/DeleteMemberClan/{{i[1]}}">
                                 <img src="static/img/delete2.png" />
                             </a>
                         </td>
@@ -31,7 +31,7 @@
         {% endfor %}
     </div>
     <div class="centro mt-5">
-        <a  class="btn btn-danger ">Reset teams</a>
+        <a href="/ResetClans" class="btn btn-danger btn-delete">Reset teams</a>
     </div>
 
     <div class="formulario mt-5">
@@ -58,4 +58,5 @@
         </form>
     </div>
 </div>
+<script src="{{url_for('static', filename='js/teams.js')}}"></script>
 {% endblock%}
