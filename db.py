@@ -102,13 +102,25 @@ class Database:
         except Exception as e:
             print(e)
             return None
-
+    def CheckPlayer(self,id_player):
+        sql='select id_player from user_clan where id_player=%s'
+        try:
+            self.cursor.execute(sql,(id_player))
+            data=self.cursor.fetchone()
+            if data==None:
+                return True
+            return False
+        except Exception as e:
+            print(e)
+            return False
     def AddPlayerClan(self,id_player,id_clan):
         sql='insert into user_clan values (%s,%s)'
         try:
-            self.cursor.execute(sql,(id_clan,id_player))
-            self.connection.commit()
-            return True
+            if self.CheckPlayer(id_player):
+                self.cursor.execute(sql,(id_clan,id_player))
+                self.connection.commit()
+                return True
+            return False
         except Exception as e:
             print(e)
             return False

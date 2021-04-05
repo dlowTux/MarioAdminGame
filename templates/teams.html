@@ -19,7 +19,10 @@
                     <tr>
                         <td>{{i[0]}}</td>
                         <td>
-                            <a  class='btn-delete' href="/DeleteMemberClan/{{i[1]}}">
+                            <a
+                                class="btn-delete"
+                                href="/DeleteMemberClan/{{i[1]}}"
+                            >
                                 <img src="static/img/delete2.png" />
                             </a>
                         </td>
@@ -35,10 +38,10 @@
     </div>
 
     <div class="formulario mt-5">
-        <form name="formteams" action="/AddTeam" method="POST">
+        <form id="formteams" action="/AddTeam" method="POST">
             <div class="mb-3">
                 <label for="disabledTextInput" class="form-label">Team</label>
-                <select name="txtteams" class="form-select">
+                <select id="txtteams" class="form-select">
                     {% for x in clans %}
                     <option value="{{x[0]}}">{{x[1]}}</option>
                     {% endfor %}
@@ -46,7 +49,7 @@
             </div>
             <div class="mb-3">
                 <label for="disabledSelect" class="form-label">Player</label>
-                <select name="txtuser" class="form-select">
+                <select id="txtuser" class="form-select">
                     {% for i in players %}
                     <option value="{{i[0]}}">{{i[1]}}</option>
                     {% endfor %}
@@ -56,6 +59,7 @@
                 <button type="submit" class="btn btn-primary boton">Add</button>
             </div>
         </form>
+        <div class="mt-5 error" id="errors"></div>
     </div>
 </div>
 <script src="{{url_for('static', filename='js/teams.js')}}"></script>

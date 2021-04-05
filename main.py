@@ -106,11 +106,11 @@ def teams():
 def addteam():
     if g.user:
         if request.method=='POST':
-            team=request.form['txtteams']
-            user=request.form['txtuser']
-            Teams.Team().AddPlayerClan(team,user)
-            return redirect(url_for('teams'))
-        pass
+            data=request.get_json()
+            team=data['username'][0]
+            user=data['username'][1]
+            r=Teams.Team().AddPlayerClan(team,user)
+            return  jsonify({'response':r})
     return 'No'
 @app.route('/DeleteMemberClan/<id_player>')
 def DeleteMemberClan(id_player):
