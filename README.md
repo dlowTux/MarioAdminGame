@@ -1,7 +1,7 @@
 # MarioAdminGame
 A system to administer and see the result of the games
 ## Run Local
-### installation
+### Installation
 - pip install flask
 - pip install pymysql
 ### Database
