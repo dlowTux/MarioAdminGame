@@ -258,5 +258,29 @@ class Database:
         except Exception as e:
             print('Error ',e)
             return None
-    
+
+    def CheckTournamentPoints(self,id_player):
+        sql='select *  from tournament_points_series where id_player=%s'
+        try:
+            self.cursor.execute(sql,(id_player))
+            d=self.cursor.fetchone()
+            if d!=None:
+                return False
+            return True
+        except Exception as e:
+            print(e)
+            return True
+
+    def AddTournamentPointSeries(self,id_tournament,id_player):
+        sql='insert into tournament_points_series values (%s,%s)'
+        try:
+            if self.CheckTournamentPoints(id_player):
+                self.cursor.execute(sql,(id_tournament,id_player))
+                self.connection.commit()
+                return True
+            return False
+        except Exception as e:
+            print(id_tournament)
+            print('Errores ',e)
+            return False
 

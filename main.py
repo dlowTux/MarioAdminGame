@@ -129,12 +129,15 @@ def resetclans():
 def tournament():
     c=tournaments.Tournament().GetTournament('1')
     s=tournaments.Tournament().GetTournament('2')
+    p=tournaments.Tournament().GetTournament('3')
     return render_template(
             'tournaments.html',
             teams=Teams.Team().GetTeams(),
             players=User.User().GetAllPlayers(),
             single=s,
             clans=c,
+            point=p,
+            len_p=len(p),
             len_c=len(c),
             len_single=len(s)
             )
@@ -164,6 +167,15 @@ def AddTeamTournament():
         id_tournament=data['tournament'][0]
         id_clan=data['tournament'][1]
         r=tournaments.Tournament().AddClanTournament(id_clan,id_tournament)
+        return jsonify({'response':r})
+    return 'No'
+@app.route('/AddPonitsSeries', methods=['POST'])
+def AddPonitsSeries():
+    if g.user:
+        data=request.get_json()
+        id_tournament=data['tournament'][0]
+        id_player=data['tournament'][1]
+        r=tournaments.Tournament().RegisterPointsSeries(id_tournament,id_player)
         return jsonify({'response':r})
     return 'No'
 if __name__ =='__main__':

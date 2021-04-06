@@ -1,5 +1,7 @@
 import db
 class Tournament:
+    def RegisterPointsSeries(self,id_tournament,id_player):
+        return db.Database().AddTournamentPointSeries(id_tournament,id_player)
 
     def GetMemberOfTournamernts(self,id_tournament):
         r=db.Database().GetMemberOfTournamernts(id_tournament)

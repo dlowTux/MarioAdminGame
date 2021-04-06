@@ -44,6 +44,13 @@ create table tournament_clans(
     foreign key (id_clan) references clan(id_clan)
 );
 
+create table tournament_points_series(
+    id_tournament varchar(200) not null,
+    id_player varchar(200) not null, 
+    foreign key (id_tournament) references tournament(id_tournament),
+    foreign key(id_player) references player(id_player),
+    primary key (id_tournament,id_player)
+);
 
 create table rounds(
     id_round varchar(200) primary key not null,

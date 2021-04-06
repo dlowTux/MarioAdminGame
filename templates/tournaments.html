@@ -20,6 +20,7 @@
                 <select class="mt-3 form-select" id="txttype">
                     <option value="1">Teams</option>
                     <option value="2">Single</option>
+                    <option value="3">Points series</option>
                 </select>
             </div>
 
@@ -27,7 +28,62 @@
         </form>
     </div>
     <div class="error" id="errors"></div>
+    <div class="mt-3">
+        <h3>Points series</h3>
 
+        <form id="formspoints">
+            <label>Tournament</label>
+            <select id="id_t" class="form-select">
+                {% for s in point %}
+                <option value="{{s[0]}}">{{s[1]}}</option>
+                {% endfor %}
+            </select>
+            <label class="mt-4">Player</label>
+            <select id="id_p" class="form-select">
+                {% for player in players %}
+                <option value="{{player[0]}}">{{player[1]}}</option>
+                {% endfor %}
+            </select>
+            <div class="centro">
+                <button class="mt-5 btn btn-primary boton">Add</button>
+            </div>
+        </form>
+        <h3 class="mt-5">Admin Points series</h3>
+
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Tournament</th>
+                            <th scope="col">Delete</th>
+                            <th scope="col">Admin</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for s in point %}
+                        <tr>
+                            <td>
+                                <label>{{s[1]}}</label>
+                            </td>
+                            <td>
+                                <a href="/DeleteTournament/{{s[0]}}">
+                                    <img src="static/img/delete2.png" />
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/AdminTournament">
+                                    <img src="static/img/administracion.png" />
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        <tr></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     <div class="row mt-5">
         {% if len_single>0 %}
         <div class="col">
@@ -64,21 +120,23 @@
                             </thead>
                             <tbody>
                                 {% for s in single %}
-                                <td>
-                                    <label>{{s[1]}}</label>
-                                </td>
-                                <td>
-                                    <a href="/DeleteTournament/{{s[0]}}">
-                                        <img src="static/img/delete2.png" />
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="/AdminTournament">
-                                        <img
-                                            src="static/img/administracion.png"
-                                        />
-                                    </a>
-                                </td>
+                                <tr>
+                                    <td>
+                                        <label>{{s[1]}}</label>
+                                    </td>
+                                    <td>
+                                        <a href="/DeleteTournament/{{s[0]}}">
+                                            <img src="static/img/delete2.png" />
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="/AdminTournament">
+                                            <img
+                                                src="static/img/administracion.png"
+                                            />
+                                        </a>
+                                    </td>
+                                </tr>
                                 {% endfor %}
                                 <tr></tr>
                             </tbody>
@@ -121,21 +179,24 @@
                             </thead>
                             <tbody>
                                 {% for s in clans %}
-                                <td>
-                                    <label>{{s[1]}}</label>
-                                </td>
-                                <td>
-                                    <a href="/DeleteTournament/{{s[0]}}">
-                                        <img src="static/img/delete2.png" />
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="/AdminTournament">
-                                        <img
-                                            src="static/img/administracion.png"
-                                        />
-                                    </a>
-                                </td>
+                                <tr>
+                                    <td>
+                                        <label>{{s[1]}}</label>
+                                    </td>
+                                    <td>
+                                        <a href="/DeleteTournament/{{s[0]}}">
+                                            <img src="static/img/delete2.png" />
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="/AdminTournament">
+                                            <img
+                                                src="static/img/administracion.png"
+                                            />
+                                        </a>
+                                    </td>
+                                </tr>
+
                                 {% endfor %}
                             </tbody>
                         </table>
