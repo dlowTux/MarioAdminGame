@@ -157,5 +157,14 @@ def AddTournamentPlayer():
         r=tournaments.Tournament().AddPlayerTournament(id_tournament,id_player)
         return jsonify({'response':r})
     return 'No'
+@app.route('/AddTeamTournament',methods=['POST'])
+def AddTeamTournament():
+    if g.user:
+        data=request.get_json()
+        id_tournament=data['tournament'][0]
+        id_clan=data['tournament'][1]
+        r=tournaments.Tournament().AddClanTournament(id_clan,id_tournament)
+        return jsonify({'response':r})
+    return 'No'
 if __name__ =='__main__':
     app.run(debug=True)

@@ -1,5 +1,9 @@
 import db
 class Tournament:
+
+    def AddClanTournament(self,id_clan,id_tournament):
+        return db.Database().AddClanTournament(id_tournament,id_clan)
+
     def GetTournament(self,Type):
         data=db.Database().GetTournament(Type)
         if data!=None:

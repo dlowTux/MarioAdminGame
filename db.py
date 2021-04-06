@@ -228,4 +228,25 @@ class Database:
         except Exception as e:
             print(e)
             return False
+    def CheckClanTournament(self,id_clan):
+        sql='select id_clan from tournament_clans where id_clan =%s'
+        try:
+            self.cursor.execute(sql,(id_clan))
+            a=self.cursor.fetchone()
+            if a!=None:
+                return False
+            return True
+        except Exception as e:
+            print(e)
+            return True
+    def AddClanTournament(self,id_tournament,id_clan):
+        sql='insert into tournament_clans values(%s,%s)'
+        try:
+            self.cursor.execute(sql,(id_tournament,id_clan))
+            self.connection.commit()
+            return True
+        except Exception as e:
+            print(e)
+            return False
+    
 
