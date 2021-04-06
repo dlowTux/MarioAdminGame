@@ -51,7 +51,9 @@ document.getElementById("formsingler").addEventListener("submit", function (e) {
         .then((data) => {
             //reload the page
             if (data["response"] == true) {
+
                 window.location.replace("http://localhost:5000/tournament");
+                console.log(data['response'][1])
             } else {
                 //adding the eror to le log
                 const label = document.createElement("label");
