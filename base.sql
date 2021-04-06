@@ -27,17 +27,12 @@ create table tournament(
     tournament_name varchar(100),
     type_ int not null
 );
-create table states(
-    id_state varchar(200) primary key not null,
-    state varchar(30) not null
-);
+
 
 create table tournament_player(
     id_tournament varchar(200) not null,
     id_player varchar(200) not null,
-    state varchar(200) not null,
     primary key(id_tournament,id_player),
-    foreign key(state) references states(id_state),
     foreign key (id_tournament) references tournament(id_tournament),
     foreign key (id_player) references player(id_player)
 );

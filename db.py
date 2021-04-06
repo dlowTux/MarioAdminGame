@@ -179,7 +179,6 @@ class Database:
         try:
             self.cursor.execute(sql,(name))
             data=self.cursor.fetchone()
-            print(data)
             if data!=None:
                 return False
             return True
@@ -199,7 +198,7 @@ class Database:
             print('Eror ',e)
             return False
     def GetTournament(self,Type):
-        sql='select * from tournament where type=%s'
+        sql='select * from tournament where type_=%s'
         try:
             self.cursor.execute(sql,(Type))
             data=self.cursor.fetchall()
@@ -207,3 +206,26 @@ class Database:
         except Exception as e:
             print(e)
             return None
+    def CheckPlayerTournament(self,id_player):
+        sql='select * from  tournament_player where id_player=%s'
+        try:
+            self.cursor.execute(sql,(id_player))
+            data=self.cursor.fetchone()
+            if data!=None:
+                return False
+            return True
+        except Exception as e:
+            print(e)
+            return True
+    def AddPlayerTournament(self,id_tournament,id_player):
+        sql='insert into  tournament_player values(%s,%s)'
+        try:
+            if self.CheckPlayer(id_player):
+                self.cursor.execute(sql,(id_tournament,id_player))
+                self.connection.commit()
+                return True
+            return False
+        except Exception as e:
+            print(e)
+            return False
+
