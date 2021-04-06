@@ -172,4 +172,24 @@ class Database:
             return True
         except Exception as e:
             print(e)
+            return False 
+    
+    def RegisterTournament(self,name,Type):
+        sql='INSERT INTO tournament values (%s,%s,%s)'
+        try:
+            uuid=self.GetUUID()
+            self.cursor.execute(sql,(uuid[0],name,Type))
+            self.connection.commit()
+            return True
+        except Exception as e:
+            print('Eror ',e)
             return False
+    def GetTournament(self,Type):
+        sql='select * from tournament where type=%s'
+        try:
+            self.cursor.execute(sql,(Type))
+            data=self.cursor.fetchall()
+            return data
+        except Exception as e:
+            print(e)
+            return None

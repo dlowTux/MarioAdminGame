@@ -14,14 +14,16 @@
             <label>Name of the tournament</label>
             <input type="text" id="txtname" required />
             <label>Type</label>
-            <select>
-                <option>Teams</option>
-                <option>Single</option>
+            <select id="txttype">
+                <option value="1">Teams</option>
+                <option value="2">Single</option>
             </select>
 
             <button class="mt-1 btn btn-primary">Register</button>
         </form>
     </div>
+    <div class="error" id="errors"></div>
+
     <div class="row mt-5">
         <div class="col">
             <h3>Single tournament</h3>
@@ -29,13 +31,15 @@
             <form id="formregister">
                 <label>Tournament</label>
                 <select id="id_tournament" class="form-select">
-                    <option value="">
-                        Torneo de verano individual 2021
-                    </option>
+                    {% for s in single %}
+                    <option value="{{s[0]}}">{{s[1]}}</option>
+                    {% endfor %}
                 </select>
                 <label class="mt-4">Player</label>
                 <select id="id_player" class="form-select">
-                    <option>China toxica</option>
+                    {% for player in players %}
+                    <option value="{{player[0]}}">{{player[1]}}</option>
+                    {% endfor %}
                 </select>
                 <div class="centro">
                     <button class="mt-5 btn btn-primary boton">Agregar</button>
@@ -46,7 +50,9 @@
                 <div class="row">
                     <div class="col">
                         <select class="form-select">
-                            <option>Torneo de verano individual 2021</option>
+                            {% for s in single %}
+                            <option value="{{s[0]}}">{{s[1]}}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="col">
@@ -60,13 +66,15 @@
             <form id="formregister">
                 <label>Tournament</label>
                 <select id="id_tournament" class="form-select">
-                    <option value="">
-                        Torneo de verano equipos 2021
-                    </option>
+                    {% for s in clans %}
+                    <option value="{{s[0]}}">{{s[1]}}</option>
+                    {% endfor %}
                 </select>
-                <label class="mt-4">Player</label>
+                <label class="mt-4">Teams</label>
                 <select id="id_player" class="form-select">
-                    <option>Rojo</option>
+                    {% for team in teams %}
+                    <option value="{{team[0]}}">{{team[1]}}</option>
+                    {% endfor %}
                 </select>
                 <div class="centro">
                     <button class="mt-5 btn btn-primary boton">Agregar</button>
@@ -77,7 +85,9 @@
                 <div class="row">
                     <div class="col">
                         <select class="form-select">
-                            <option>Torneo de verano individual 2021</option>
+                            {% for s in clans %}
+                            <option value="{{s[0]}}">{{s[1]}}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="col">
@@ -88,4 +98,5 @@
         </div>
     </div>
 </div>
+<script src="{{url_for('static', filename='js/tournament.js')}}"></script>
 {% endblock%}

@@ -2,6 +2,7 @@ import Login
 from flask import Flask,render_template,request,jsonify,session,g,url_for,redirect
 import User
 import Teams
+import tournaments
 app=Flask(__name__)
 app.secret_key = "key_hash"
 
@@ -126,6 +127,23 @@ def resetclans():
     return 'No'
 @app.route('/tournament')
 def tournament():
-    return render_template('tournaments.html')
+    return render_template(
+            'tournaments.html',
+            teams=Teams.Team().GetTeams(),
+            players=User.User().GetAllPlayers(),
+            single=tournaments.Tournament().GetTournament('2'),
+            clans=tournaments.Tournament().GetTournament('1')
+            )
+
+@app.route('/AddTournament', methods=['POST'])
+def AddTournament():
+    if g.user:
+        data=request.get_json()
+        name=data['tournament'][0]
+        Type=data['tournament'][1]
+        r=tournaments.Tournament().RegisterTournament(name,Type)
+        return jsonify({'response':r})
+    return 'None'
+
 if __name__ =='__main__':
     app.run(debug=True)
