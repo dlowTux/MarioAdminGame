@@ -29,6 +29,7 @@
     <div class="error" id="errors"></div>
 
     <div class="row mt-5">
+        {% if len_single>0 %}
         <div class="col">
             <h3>Single tournament</h3>
 
@@ -60,6 +61,7 @@
                                 {% endfor %}
                             </select>
                         </div>
+
                         <div class="centro">
                             <button class="mt-3 boton btn btn-primary">
                                 Search
@@ -69,17 +71,18 @@
                 </div>
             </form>
         </div>
+        {% endif%} {%if len_c>0%}
         <div class="col">
             <h3>Teams tournament</h3>
-            <form id="formregister">
+            <form id="formclans">
                 <label>Tournament</label>
-                <select id="id_tournament" class="form-select">
+                <select id="id_tournament_e" class="form-select">
                     {% for s in clans %}
                     <option value="{{s[0]}}">{{s[1]}}</option>
                     {% endfor %}
                 </select>
                 <label class="mt-4">Teams</label>
-                <select id="id_player" class="form-select">
+                <select id="id_team" class="form-select">
                     {% for team in teams %}
                     <option value="{{team[0]}}">{{team[1]}}</option>
                     {% endfor %}
@@ -100,12 +103,15 @@
                             </select>
                         </div>
                         <div class="mt-3 centro">
-                            <button class="boton btn btn-primary">Search</button>
+                            <button class="boton btn btn-primary">
+                                Search
+                            </button>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
+        {% endif %}
     </div>
 </div>
 <script src="{{url_for('static', filename='js/tournament.js')}}"></script>

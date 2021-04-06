@@ -127,12 +127,16 @@ def resetclans():
     return 'No'
 @app.route('/tournament')
 def tournament():
+    c=tournaments.Tournament().GetTournament('1')
+    s=tournaments.Tournament().GetTournament('2')
     return render_template(
             'tournaments.html',
             teams=Teams.Team().GetTeams(),
             players=User.User().GetAllPlayers(),
-            single=tournaments.Tournament().GetTournament('2'),
-            clans=tournaments.Tournament().GetTournament('1')
+            single=s,
+            clans=c,
+            len_c=len(c),
+            len_single=len(s)
             )
 
 @app.route('/AddTournament', methods=['POST'])
