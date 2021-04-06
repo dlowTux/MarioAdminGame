@@ -130,6 +130,7 @@ def tournament():
     c=tournaments.Tournament().GetTournament('1')
     s=tournaments.Tournament().GetTournament('2')
     p=tournaments.Tournament().GetTournament('3')
+    tps=tournaments.Tournament().GetTournamentPointsSeries()
     return render_template(
             'tournaments.html',
             teams=Teams.Team().GetTeams(),
@@ -139,7 +140,9 @@ def tournament():
             point=p,
             len_p=len(p),
             len_c=len(c),
-            len_single=len(s)
+            len_single=len(s),
+            ps=tps,
+            len_ps=len(tps)
             )
 
 @app.route('/AddTournament', methods=['POST'])

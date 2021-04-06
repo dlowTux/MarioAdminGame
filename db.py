@@ -280,7 +280,18 @@ class Database:
                 return True
             return False
         except Exception as e:
-            print(id_tournament)
             print('Errores ',e)
             return False
+    def GetMemberOfPoint(self):
+        sql='select p.name_player from tournament_points_series tcs inner join player p on p.id_player=tcs.id_player'
+        try:
+            self.cursor.execute(sql)
+            data=self.cursor.fetchall()
+            if data!=None:
+                return data
+            else:
+                return []
+        except Exception as e:
+            print(e)
+            return None
 
