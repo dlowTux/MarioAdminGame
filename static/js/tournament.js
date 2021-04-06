@@ -23,7 +23,7 @@ document.getElementById("formulariotournament").addEventListener("submit", funct
                 //adding the eror to le log
                 const label = document.createElement("label");
                 label.innerText =
-                    "Error that user is already in into a clan";
+                    "Error that tournament has the same name that other tournament";
                 label.classList.add("error");
                 log.append(label);
             }
