@@ -15,7 +15,13 @@ class Tournament:
         r=db.Database().GetMemberOfTournamernts(id_tournament)
         if r==None:
             return []
-        return r
+        else:
+            d=[]
+            for x in r:
+                d.append(x)
+            
+            return d
+
     def AddClanTournament(self,id_clan,id_tournament):
         return db.Database().AddClanTournament(id_tournament,id_clan)
 

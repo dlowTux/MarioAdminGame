@@ -131,11 +131,31 @@ def tournament():
     s=tournaments.Tournament().GetTournament('2')
     p=tournaments.Tournament().GetTournament('3')
     tps=tournaments.Tournament().GetTournamentPointsSeries()
+    #s=tournaments.Tournament().GetMemberOfTournamernts()
+    saux=[]
+    for x in s:
+        aux=[]
+        for hc in x:
+            aux.append(hc)
+        saux.append(aux)
+    count=0
+    for x in s:
+        aux=tournaments.Tournament().GetMemberOfTournamernts(x[0])
+        aux2=[]
+        for i in aux:
+            print('Www')
+            print(i)
+            aux2.append(i)
+        saux[count].append(aux2)
+        count+=1
+    print('err')
+    print(saux)
+
     return render_template(
             'tournaments.html',
             teams=Teams.Team().GetTeams(),
             players=User.User().GetAllPlayers(),
-            single=s,
+            single=saux,
             clans=c,
             point=p,
             len_p=len(p),
