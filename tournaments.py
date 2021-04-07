@@ -1,5 +1,9 @@
 import db
 class Tournament:
+    
+    def DeleteTournamentTeam(self,id_tournament):
+        return db.Database().DeleteTournamentTeam(id_tournament)
+
     def DeleteTournamentPlayer(self,id_tournament):
         return db.Database().DeleteTournamentPlayer(id_tournament)
 
