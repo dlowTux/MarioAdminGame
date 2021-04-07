@@ -203,5 +203,11 @@ def AddPonitsSeries():
         r=tournaments.Tournament().RegisterPointsSeries(id_tournament,id_player)
         return jsonify({'response':r})
     return 'No'
+@app.route('/DeleteTournamentPlayer/<id_tournament>')
+def deleteTP(id_tournament):
+    if g.user:
+        tournaments.Tournament().DeleteTournamentPlayer(id_tournament)
+        return redirect(url_for('tournament'))
+    return 'No'
 if __name__ =='__main__':
     app.run(debug=True)

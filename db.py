@@ -321,5 +321,27 @@ class Database:
         except Exception as e:
             print(e)
             return None
+    def CheckTournamentPlayer(self,id_tournament):
+        sql='select * from tournament_player where id_tournament=%s'
+        try:
+            self.cursor.execute(sql,(id_tournament))
+            data=self.cursor.fetchone()
+            if data!=None:
+                return False
+            return True
+        except Exception as e:
+            print(e)
+            return True
+    def DeleteTournamentPlayer(self,id_tournament):
+        sql='delete from tournament where id_tournament=%s'
+        try:
+            if self.CheckTournamentPlayer(id_tournament):
+                self.cursor.execute(sql,(id_tournament))
+                self.connection.commit()
+                return True
+            return False
+        except Exception as e:
+            print(e)
+            return False
 
 

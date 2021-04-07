@@ -95,7 +95,7 @@ document.getElementById("formclans").addEventListener("submit", function (e) {
             }
         });
 });
-document.getElementById("formspoints").addEventListener("submit", function (e) {
+/*document.getElementById("formspoints").addEventListener("submit", function (e) {
     e.preventDefault();
     const log = document.querySelector("#errors");
     log.innerHTML = " ";
@@ -125,4 +125,15 @@ document.getElementById("formspoints").addEventListener("submit", function (e) {
                 log.append(label);
             }
         });
-});
+});*/
+const btnDelete = document.querySelectorAll('.btn-delete');
+if (btnDelete) {
+    const btnArray = Array.from(btnDelete);
+    btnArray.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            if (!confirm('Are you sure you want to delete it?')) {
+                e.preventDefault();
+            }
+        });
+    })
+}
