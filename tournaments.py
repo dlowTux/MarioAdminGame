@@ -11,6 +11,7 @@ class Tournament:
     def RegisterPointsSeries(self,id_tournament,id_player):
         return db.Database().AddTournamentPointSeries(id_tournament,id_player)
 
+    
     def GetMemberOfTournamernts(self,id_tournament):
         r=db.Database().GetMemberOfTournamernts(id_tournament)
         if r==None:
@@ -20,6 +21,16 @@ class Tournament:
             for x in r:
                 d.append(x)
             
+            return d
+
+    def GetTeamTornament(self,id_tournament):
+        r=db.Database().GetTeamTornament(id_tournament)
+        if r==None:
+            return []
+        else:
+            d=[]
+            for x in r:
+                d.append(x)
             return d
 
     def AddClanTournament(self,id_clan,id_tournament):

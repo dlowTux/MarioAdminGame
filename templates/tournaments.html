@@ -62,7 +62,7 @@
                                 <!-- Button trigger modal -->
                                 <button
                                     type="button"
-                                    class="btn btn-primary"
+                                    class="btn btn-success"
                                     data-bs-toggle="modal"
                                     data-bs-target="#modal{{s[0]}}"
                                 >
@@ -149,112 +149,107 @@
                     {% endfor %}
                 </select>
                 <div class="centro">
-                    <button class="mt-5 btn btn-primary boton">Add</button>
+                    <button class="mt-5 btn btn-danger boton">Add</button>
                 </div>
             </form>
             <h3 class="mt-5">Admin Single</h3>
-            <form>
-                <div class="row">
-                    <div class="col">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Tournament</th>
-                                    <th scope="col">Delete</th>
-                                    <th scope="col">Admin</th>
-                                    <th scope="col">Members</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for s in single %}
-                                <tr>
-                                    <td>
-                                        <label>{{s[1]}}</label>
-                                    </td>
-                                    <td>
-                                        <a href="/DeleteTournament/{{s[0]}}">
-                                            <img src="static/img/delete2.png" />
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="/AdminTournament">
-                                            <img
-                                                src="static/img/administracion.png"
-                                            />
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <!-- Button trigger modal -->
-                                        <button
-                                            type="button"
-                                            class="btn btn-primary"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#m{{s[0]}}"
-                                        >
-                                            See members
-                                        </button>
 
-                                        <!-- Modal -->
-                                        <div
-                                            class="modal fade"
-                                            id="m{{s[0]}}"
-                                            tabindex="-1"
-                                            aria-labelledby="exampleModalLabel"
-                                            aria-hidden="true"
-                                        >
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5
-                                                            class="modal-title"
-                                                            id="exampleModalLabel"
-                                                        >
-                                                            {{s[1]}}
-                                                        </h5>
-                                                        <button
-                                                            type="button"
-                                                            class="btn-close"
-                                                            data-bs-dismiss="modal"
-                                                            aria-label="Close"
-                                                        ></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <table class="table">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th
-                                                                        scope="col"
-                                                                    >
-                                                                        Player
-                                                                    </th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <label>{{s[3]}}</label>
-                                                                {% for x in
-                                                                 s[3] %}
+            <div class="row">
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tournament</th>
+                                <th scope="col">Delete</th>
+                                <th scope="col">Admin</th>
+                                <th scope="col">Members</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for s in single %}
+                            <tr>
+                                <td>
+                                    <label>{{s[1]}}</label>
+                                </td>
+                                <td>
+                                    <a href="/DeleteTournament/{{s[0]}}">
+                                        <img src="static/img/delete2.png" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="/AdminTournament">
+                                        <img
+                                            src="static/img/administracion.png"
+                                        />
+                                    </a>
+                                </td>
+                                <td>
+                                    <!-- Button trigger modal -->
+                                    <button
+                                        type="button"
+                                        class="btn btn-success"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#m{{s[0]}}"
+                                    >
+                                        See members
+                                    </button>
 
-                                                                <tr>
-                                                                    <td>
-                                                                        {{x}}
-                                                                    </td>
-                                                                </tr>
-                                                                {% endfor%}
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                    <!-- Modal -->
+                                    <div
+                                        class="modal fade"
+                                        id="m{{s[0]}}"
+                                        tabindex="-1"
+                                        aria-labelledby="exampleModalLabel"
+                                        aria-hidden="true"
+                                    >
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5
+                                                        class="modal-title"
+                                                        id="exampleModalLabel"
+                                                    >
+                                                        {{s[1]}}
+                                                    </h5>
+                                                    <button
+                                                        type="button"
+                                                        class="btn-close"
+                                                        data-bs-dismiss="modal"
+                                                        aria-label="Close"
+                                                    ></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">
+                                                                    Player
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {% for x in s[3] %}
+
+                                                            <tr>
+                                                                <td>
+                                                                    {{x}}
+                                                                </td>
+                                                            </tr>
+                                                            {% endfor%}
+                                                        </tbody>
+                                                    </table>
                                                 </div>
                                             </div>
                                         </div>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                                <tr></tr>
-                            </tbody>
-                        </table>
-                    </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            <tr></tr>
+                        </tbody>
+                    </table>
                 </div>
-            </form>
+            </div>
         </div>
         {% endif%} {%if len_c>0%}
         <div class="col">
@@ -273,47 +268,107 @@
                     {% endfor %}
                 </select>
                 <div class="centro">
-                    <button class="mt-5 btn btn-primary boton">Add</button>
+                    <button class="mt-5 btn btn-danger boton">Add</button>
                 </div>
             </form>
             <h3 class="mt-5">Admin Teams</h3>
-            <form>
-                <div class="row">
-                    <div class="col">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Tournament</th>
-                                    <th scope="col">Delete</th>
-                                    <th scope="col">Admin</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for s in clans %}
-                                <tr>
-                                    <td>
-                                        <label>{{s[1]}}</label>
-                                    </td>
-                                    <td>
-                                        <a href="/DeleteTournament/{{s[0]}}">
-                                            <img src="static/img/delete2.png" />
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="/AdminTournament">
-                                            <img
-                                                src="static/img/administracion.png"
-                                            />
-                                        </a>
-                                    </td>
-                                </tr>
 
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+            <div class="row">
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tournament</th>
+                                <th scope="col">Delete</th>
+                                <th scope="col">Admin</th>
+                                <th scope="col">Members</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for s in clans %}
+                            <tr>
+                                <td>
+                                    <label>{{s[1]}}</label>
+                                </td>
+                                <td>
+                                    <a href="/DeleteTournament/{{s[0]}}">
+                                        <img src="static/img/delete2.png" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="/AdminTournament">
+                                        <img
+                                            src="static/img/administracion.png"
+                                        />
+                                    </a>
+                                </td>
+                                <td>
+                                    <!-- Button trigger modal -->
+                                    <button
+                                        type="button"
+                                        class="btn btn-success"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#team{{s[0]}}"
+                                    >
+                                        See members
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div
+                                        class="modal fade"
+                                        id="team{{s[0]}}"
+                                        tabindex="-1"
+                                        aria-labelledby="exampleModalLabel"
+                                        aria-hidden="true"
+                                    >
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5
+                                                        class="modal-title"
+                                                        id="exampleModalLabel"
+                                                    >
+                                                        {{s[1]}}
+                                                    </h5>
+                                                    <button
+                                                        type="button"
+                                                        class="btn-close"
+                                                        data-bs-dismiss="modal"
+                                                        aria-label="Close"
+                                                    ></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">
+                                                                    Teams
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {% for x in s[3] %}
+
+                                                            <tr>
+                                                                <td>
+                                                                    {{x}}
+                                                                </td>
+                                                            </tr>
+                                                            {% endfor%}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
-            </form>
+            </div>
         </div>
         {% endif %}
     </div>

@@ -125,13 +125,7 @@ def resetclans():
         Teams.Team().ResetClans()
         return redirect(url_for('teams'))
     return 'No'
-@app.route('/tournament')
-def tournament():
-    c=tournaments.Tournament().GetTournament('1')
-    s=tournaments.Tournament().GetTournament('2')
-    p=tournaments.Tournament().GetTournament('3')
-    tps=tournaments.Tournament().GetTournamentPointsSeries()
-    #s=tournaments.Tournament().GetMemberOfTournamernts()
+def ConvertMembers(s,t):
     saux=[]
     for x in s:
         aux=[]
@@ -140,23 +134,31 @@ def tournament():
         saux.append(aux)
     count=0
     for x in s:
-        aux=tournaments.Tournament().GetMemberOfTournamernts(x[0])
+        if t==1:
+            aux=tournaments.Tournament().GetMemberOfTournamernts(x[0])
+        else:
+            aux=tournaments.Tournament().GetTeamTornament(x[0])
         aux2=[]
         for i in aux:
-            print('Www')
-            print(i)
+            
             aux2.append(i)
         saux[count].append(aux2)
         count+=1
-    print('err')
     print(saux)
-
+    return saux
+@app.route('/tournament')
+def tournament():
+    c=tournaments.Tournament().GetTournament('1')
+    s=tournaments.Tournament().GetTournament('2')
+    p=tournaments.Tournament().GetTournament('3')
+    tps=tournaments.Tournament().GetTournamentPointsSeries()
+    #s=tournaments.Tournament().GetMemberOfTournamernts()
     return render_template(
             'tournaments.html',
             teams=Teams.Team().GetTeams(),
             players=User.User().GetAllPlayers(),
-            single=saux,
-            clans=c,
+            single=ConvertMembers(s,1),
+            clans=ConvertMembers(c,2),
             point=p,
             len_p=len(p),
             len_c=len(c),

@@ -249,12 +249,39 @@ class Database:
         except Exception as e:
             print(e)
             return False
+    def GetTeamTornament(self,id_tournament):
+        sql='select c.color from tournament_clans tc inner join clan c on c.id_clan=tc.id_clan where tc.id_tournament=%s'
+        try:
+            self.cursor.execute(sql,(id_tournament))
+            data=self.cursor.fetchall()
+            d=[]
+            for ul in data:
+                hu=''
+                for jk in ul:
+                    if ("'" in jk)==False or ("(" in jk)==False or (')' in jk)==False:
+                        hu+=jk
+                d.append(hu)
+            return d
+
+        except Exception as e:
+            print('Error ',e)
+            return None
+
+
     def GetMemberOfTournamernts(self,id_tournament):
         sql='select p.name_player from tournament_player tp inner join player p on p.id_player=tp.id_player where tp.id_tournament=%s'
         try:
             self.cursor.execute(sql,(id_tournament))
             data=self.cursor.fetchall()
-            return data
+            d=[]
+            for ul in data:
+                hu=''
+                for jk in ul:
+                    if ("'" in jk)==False or ("(" in jk)==False or (')' in jk)==False:
+                        hu+=jk
+                d.append(hu)
+            return d
+
         except Exception as e:
             print('Error ',e)
             return None
