@@ -186,11 +186,11 @@ class Database:
             print(e)
             return True
     def RegisterTournament(self,name,Type):
-        sql='INSERT INTO tournament values (%s,%s,%s)'
+        sql='INSERT INTO tournament values (%s,%s,%s,%s)'
         try:
             if self.CheckTournament(name):
                 uuid=self.GetUUID()
-                self.cursor.execute(sql,(uuid[0],name,Type))
+                self.cursor.execute(sql,(uuid[0],name,Type,0))
                 self.connection.commit()
                 return True
             return False
@@ -238,9 +238,11 @@ class Database:
     def AddClanTournament(self,id_tournament,id_clan):
         sql='insert into tournament_clans values(%s,%s)'
         try:
-            self.cursor.execute(sql,(id_tournament,id_clan))
-            self.connection.commit()
-            return True
+            if self.CheckTournamentStatus(id_tournament):
+                self.cursor.execute(sql,(id_tournament,id_clan))
+                self.connection.commit()
+                return True
+            return False
         except Exception as e:
             print(e)
             return False

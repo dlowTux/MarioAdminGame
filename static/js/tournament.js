@@ -58,7 +58,7 @@ document.getElementById("formsingler").addEventListener("submit", function (e) {
                 //adding the eror to le log
                 const label = document.createElement("label");
                 label.innerText =
-                    "Error the was not added to the tournament try again";
+                    "Error the player was not added to the tournament try again";
                 label.classList.add("error");
                 log.append(label);
             }
@@ -89,7 +89,7 @@ document.getElementById("formclans").addEventListener("submit", function (e) {
                 //adding the eror to le log
                 const label = document.createElement("label");
                 label.innerText =
-                    "Error the was not added to the tournament try again";
+                    "Error the clan was not added to the tournament try again";
                 label.classList.add("error");
                 log.append(label);
             }
