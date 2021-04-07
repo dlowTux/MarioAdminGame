@@ -206,40 +206,17 @@ class Database:
         except Exception as e:
             print(e)
             return None
-    def CheckPlayerTournament(self,id_player):
-        sql='select * from  tournament_player where id_player=%s'
-        try:
-            self.cursor.execute(sql,(id_player))
-            data=self.cursor.fetchone()
-            if data!=None:
-                return False
-            return True
-        except Exception as e:
-            print(e)
-            return True
+
     def AddPlayerTournament(self,id_tournament,id_player):
         sql='insert into  tournament_player values(%s,%s)'
         try:
-            if self.CheckPlayerTournament(id_player):
-                print('Insert')
-                self.cursor.execute(sql,(id_tournament,id_player))
-                self.connection.commit()
-                return True
-            return False
-        except Exception as e:
-            print(e)
-            return False
-    def CheckClanTournament(self,id_clan):
-        sql='select id_clan from tournament_clans where id_clan =%s'
-        try:
-            self.cursor.execute(sql,(id_clan))
-            a=self.cursor.fetchone()
-            if a!=None:
-                return False
+            self.cursor.execute(sql,(id_tournament,id_player))
+            self.connection.commit()
             return True
         except Exception as e:
             print(e)
-            return True
+            return False
+    
     def AddClanTournament(self,id_tournament,id_clan):
         sql='insert into tournament_clans values(%s,%s)'
         try:
@@ -286,29 +263,17 @@ class Database:
             print('Error ',e)
             return None
 
-    def CheckTournamentPoints(self,id_player):
-        sql='select *  from tournament_points_series where id_player=%s'
-        try:
-            self.cursor.execute(sql,(id_player))
-            d=self.cursor.fetchone()
-            if d!=None:
-                return False
-            return True
-        except Exception as e:
-            print(e)
-            return True
 
     def AddTournamentPointSeries(self,id_tournament,id_player):
         sql='insert into tournament_points_series values (%s,%s)'
         try:
-            if self.CheckTournamentPoints(id_player):
-                self.cursor.execute(sql,(id_tournament,id_player))
-                self.connection.commit()
-                return True
-            return False
+            self.cursor.execute(sql,(id_tournament,id_player))
+            self.connection.commit()
+            return True
         except Exception as e:
             print('Errores ',e)
             return False
+    
     def GetMemberOfPoint(self):
         sql='select p.name_player from tournament_points_series tcs inner join player p on p.id_player=tcs.id_player'
         try:

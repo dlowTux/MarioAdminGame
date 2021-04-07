@@ -215,5 +215,8 @@ def deleteTT(id_tournament):
         tournaments.Tournament().DeleteTournamentTeam(id_tournament)
         return redirect(url_for('tournament'))
     return 'No'
+@app.route('/AdminTournament/<id_tournament>')
+def admintournament(id_tournament):
+    return render_template('AdminTournament.html')
 if __name__ =='__main__':
     app.run(debug=True)

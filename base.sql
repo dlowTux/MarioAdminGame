@@ -28,6 +28,7 @@ create table tournament(
     type_ int not null
 );
 
+alter table tournament add column state int default 0 ;
 
 create table tournament_player(
     id_tournament varchar(200) not null,
