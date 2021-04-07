@@ -206,13 +206,31 @@ class Database:
         except Exception as e:
             print(e)
             return None
-
+    def CheckTournamentStatus(self,id_tournament):
+        sql='select state from tournament where id_tournament=%s'
+        try:
+            self.cursor.execute(sql,(id_tournament))
+            data=self.cursor.fetchone()
+            daux=''
+    
+            if data!=None:
+                for x in data:
+                    if (x=="'" or x=='(' or x==')' or x==',')==False:
+                        daux+=str(x)
+                if '0'==daux:
+                    return True
+            return False
+        except Exception as e:
+            print (e)
+            return False
     def AddPlayerTournament(self,id_tournament,id_player):
         sql='insert into  tournament_player values(%s,%s)'
         try:
-            self.cursor.execute(sql,(id_tournament,id_player))
-            self.connection.commit()
-            return True
+            if self.CheckTournamentStatus(id_tournament):
+                self.cursor.execute(sql,(id_tournament,id_player))
+                self.connection.commit()
+                return True
+            return False
         except Exception as e:
             print(e)
             return False
@@ -330,5 +348,7 @@ class Database:
         except Exception as e:
             print(e)
             return False
-            
+
+    
+
 
