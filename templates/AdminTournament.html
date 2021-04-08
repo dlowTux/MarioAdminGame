@@ -49,6 +49,7 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% if status_p==False %}
         <h3 class="mt-5">Clash</h3>
         <form>
             <label>Team 1</label>
@@ -165,6 +166,7 @@
             </tr>
         </tbody>
     </table>
+    {% endif %}
 </div>
 <script src="{{url_for('static', filename='js/admint.js')}}"></script>
 {% endblock%}
