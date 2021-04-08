@@ -57,27 +57,44 @@
         </table>
         {% if status_p==False %}
         <h3 class="mt-5">Clash</h3>
-        <form id="form-clash">
+        <form id="formclash">
             <label>Team 1</label>
-            <select class="form-select">
+            <select id="txtteam1" class="form-select">
                 {% for cl in clans %}
                 <option value="{{cl[1]}}">{{cl[0]}}</option>
                 {% endfor %}
             </select>
             <label>Score team 1</label>
-            <input class="input" type="number" min="1" pattern="^[0-9]+" />
+            <input
+                id="txtscore1"
+                class="input"
+                type="number"
+                min="1"
+                pattern="^[0-9]+"
+                required
+            />
             <label class="mt-4">Team 2</label>
-            <select class="form-select">
+            <select id="txtteam2" class="form-select">
                 {% for cl in clans %}
                 <option value="{{cl[1]}}">{{cl[0]}}</option>
                 {% endfor %}
             </select>
             <label>Score team 2</label>
-            <input class="input" type="number" min="1" pattern="^[0-9]+" />
+            <input
+                id="txtscore2"
+                class="input"
+                type="number"
+                min="1"
+                pattern="^[0-9]+"
+                required
+            />
             <div class="centro">
                 <button class="mt-5 boton btn btn-primary">Register</button>
             </div>
         </form>
+        <div class="centro">
+            <div id="errors"></div>
+        </div>
     </div>
     <h3 class="mt-3">Score</h3>
     <table class="table">
