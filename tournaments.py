@@ -1,5 +1,16 @@
 import db
 class Tournament:
+    def DropTeamTournumant(self,id_tournament,id_clan):
+        return db.Database().DropTournamentTeam(id_tournament,id_clan)
+
+    def GetStatus(self,id_tournament):
+        return db.Database().GetStatus(id_tournament)
+
+    def GetNameTournament(self,id_tournament):
+        return db.Database().GetNameTournament(id_tournament)
+
+    def CheckTournamentStatus(self,id_tournament):
+        return db.Database().CheckTournamentStatus(id_tournament)
     
     def DeleteTournamentTeam(self,id_tournament):
         return db.Database().DeleteTournamentTeam(id_tournament)
@@ -33,11 +44,7 @@ class Tournament:
         r=db.Database().GetTeamTornament(id_tournament)
         if r==None:
             return []
-        else:
-            d=[]
-            for x in r:
-                d.append(x)
-            return d
+        return r
 
     def AddClanTournament(self,id_clan,id_tournament):
         return db.Database().AddClanTournament(id_tournament,id_clan)

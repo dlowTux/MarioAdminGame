@@ -217,6 +217,28 @@ def deleteTT(id_tournament):
     return 'No'
 @app.route('/AdminTournament/<id_tournament>')
 def admintournament(id_tournament):
-    return render_template('AdminTournament.html')
+    status=tournaments.Tournament().CheckTournamentStatus(id_tournament)
+    result=tournaments.Tournament().GetTeamTornament(id_tournament)
+    return render_template(
+            'AdminTournament.html',
+            status_p=status,
+            members=result,
+            id_t=id_tournament,
+            name=tournaments.Tournament().GetNameTournament(id_tournament)
+            )
+@app.route('/DeleteTeamTournament/<id_tournament>/<id_team>')
+def deleteteam(id_tournament,id_team):
+    if g.user:
+        tournaments.Tournament().DropTeamTournumant(id_tournament,id_team)
+        status=tournaments.Tournament().CheckTournamentStatus(id_tournament)
+        result=tournaments.Tournament().GetTeamTornament(id_tournament)
+        return render_template(
+                'AdminTournament.html',
+                status_p=status,
+                members=result,
+                id_t=id_tournament,
+                name=tournaments.Tournament().GetNameTournament(id_tournament)
+                )
+    return 'No'
 if __name__ =='__main__':
     app.run(debug=True)

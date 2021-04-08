@@ -5,15 +5,166 @@
 <br />
 <br />
 <div class="container">
-    <div class="centro">
+    <div class="centro border">
+        {% if status_p==True %}
         <div>
-            <h1>Team Tournament</h1>
+            <h3>{{name[0]}}</h3>
 
-            <a class="mt-5 boton btn btn-danger">
+            <a class="mt-3 btn btn-danger">
                 Start tournament
             </a>
+            <br />
+            <br />
         </div>
+        {% endif %} {% if status_p==False %}
+        <h1>{{name[0]}}</h1>
+        {% endif %}
+        <!--List of members-->
     </div>
-</div>
+    <div class="mt-3">
+        <h3>Members</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Team</th>
+                    {% if status_p==True %}
+                    <th scope="col">Delete</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in members %}
+                <tr>
+                    <th>{{x[0]}}</th>
+                    {% if status_p==True %}
+                    <td>
+                        <a class="btn-delete" href="/DeleteTeamTournament/{{id_t}}/{{x[1]}}">
+                            <img
+                                src="{{url_for('static',filename='img/delete2.png')}}"
+                            />
+                        </a>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h3 class="mt-5">Clash</h3>
+        <form>
+            <label>Team 1</label>
+            <select class="form-select"></select>
+            <label>Score team 1</label>
+            <input class="input" />
+            <label class="mt-4">Team 2</label>
+            <select class="form-select"></select>
+            <label>Score team 2</label>
+            <input class="input" />
+            <div class="centro">
+                <button class="mt-5 boton btn btn-primary">Register</button>
+            </div>
+        </form>
+    </div>
+    <h3 class="mt-3">Score</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Team</th>
+                <th scope="col">1</th>
+                <th scope="col">2</th>
+                <th scope="col">3</th>
+                <th scope="col">4</th>
+                <th scope="col">5</th>
+                <th scope="col">6</th>
+                <th scope="col">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">RED</th>
+                <td>500</td>
+                <td>500</td>
+                <td>500</td>
+                <td>500</td>
+                <td>500</td>
+                <td>500</td>
+                <td>500</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3 class="mt-5">History Clash</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Team 1</th>
+                <th scope="col">score</th>
+                <th scope="col">Team 2</th>
+                <th scope="col">score</th>
+                <th scope="col">Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>RED</td>
+                <td>180</td>
+                <td>GREEN</td>
+                <td>150</td>
+                <td>
+                    <!-- Button trigger modal -->
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                    >
+                        Set
+                    </button>
 
+                    <!-- Modal -->
+                    <div
+                        class="modal fade"
+                        id="exampleModal"
+                        tabindex="-1"
+                        aria-labelledby="exampleModalLabel"
+                        aria-hidden="true"
+                    >
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5
+                                        class="modal-title"
+                                        id="exampleModalLabel"
+                                    >
+                                        Modal title
+                                    </h5>
+                                    <button
+                                        type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"
+                                    ></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <label>Score team 1</label>
+                                        <input class="input" />
+                                        <label>Score team 2</label>
+                                        <input class="input" />
+                                        <div class="centro">
+                                            <button
+                                                class="mt-5 boton btn btn-primary"
+                                            >
+                                                Update
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script src="{{url_for('static', filename='js/admint.js')}}"></script>
 {% endblock%}

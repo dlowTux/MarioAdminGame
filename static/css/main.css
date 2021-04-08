@@ -158,6 +158,9 @@ section .contentBx .formBx .inputBx input[type="submit"]:hover {
 .input{
     width: 100%;
 }
+.border{
+    border: solid;
+}
 @media (max-width: 768px) {
     section .imgBx {
         top: 0;

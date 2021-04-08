@@ -212,7 +212,6 @@ class Database:
             self.cursor.execute(sql,(id_tournament))
             data=self.cursor.fetchone()
             daux=''
-    
             if data!=None:
                 for x in data:
                     if (x=="'" or x=='(' or x==')' or x==',')==False:
@@ -247,19 +246,11 @@ class Database:
             print(e)
             return False
     def GetTeamTornament(self,id_tournament):
-        sql='select c.color from tournament_clans tc inner join clan c on c.id_clan=tc.id_clan where tc.id_tournament=%s'
+        sql='select c.color,c.id_clan from tournament_clans tc inner join clan c on c.id_clan=tc.id_clan where tc.id_tournament=%s'
         try:
             self.cursor.execute(sql,(id_tournament))
             data=self.cursor.fetchall()
-            d=[]
-            for ul in data:
-                hu=''
-                for jk in ul:
-                    if ("'" in jk)==False or ("(" in jk)==False or (')' in jk)==False:
-                        hu+=jk
-                d.append(hu)
-            return d
-
+            return data
         except Exception as e:
             print('Error ',e)
             return None
@@ -350,6 +341,40 @@ class Database:
         except Exception as e:
             print(e)
             return False
+
+    def GetNameTournament(self,id_tournament):
+        sql='select tournament_name from tournament where id_tournament=%s'
+        try:
+            self.cursor.execute(sql,(id_tournament))
+            data=self.cursor.fetchone()
+            if data!=None:
+                return data
+            return[]
+        except Exception as e:
+            print(e)
+            return []
+
+    def GetStatus(self,id_tournament):
+        sql='select state from tournament where id_tournament=%s'
+        try:
+            self.cursor.execute(sql,(id_tournament))
+            data=self.cursor.fetchone()
+            return data
+        except  Exception as e:
+            print(e)
+            return []
+
+    def DropTournamentTeam(self,id_tournament,id_clan):
+        sql='delete from tournament_clans where id_tournament =%s and id_clan=%s'
+        try:
+            self.cursor.execute(sql,(id_tournament,id_clan))
+            self.connection.commit()
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+
 
     
 
