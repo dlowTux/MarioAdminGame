@@ -383,5 +383,16 @@ class Database:
         except Exception as e:
             print(e)
             return False
+    def GetClansOfTournament(self,id_tournament):
+        sql='select p.name_player from tournament_player tp inner join player p on p.id_player=tp.id_player where tp.id_tournament=%s'
+        try:
+            self.cursor.execute(sql,(id_tournament))
+            data=self.cursor.fetchall()
+            if data!=None:
+                return data
+            return []
+        except Exception as e:
+            print(e)
+            return []
 
 

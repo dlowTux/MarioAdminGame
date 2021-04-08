@@ -10,7 +10,10 @@
         <div>
             <h3>{{name[0]}}</h3>
 
-            <a href="/StartTournament/{{id_t}}" class="start mt-3 btn btn-danger">
+            <a
+                href="/StartTournament/{{id_t}}"
+                class="start mt-3 btn btn-danger"
+            >
                 Start tournament
             </a>
             <br />
@@ -38,7 +41,10 @@
                     <th>{{x[0]}}</th>
                     {% if status_p==True %}
                     <td>
-                        <a class="btn-delete" href="/DeleteTeamTournament/{{id_t}}/{{x[1]}}">
+                        <a
+                            class="btn-delete"
+                            href="/DeleteTeamTournament/{{id_t}}/{{x[1]}}"
+                        >
                             <img
                                 src="{{url_for('static',filename='img/delete2.png')}}"
                             />
@@ -51,15 +57,23 @@
         </table>
         {% if status_p==False %}
         <h3 class="mt-5">Clash</h3>
-        <form>
+        <form id="form-clash">
             <label>Team 1</label>
-            <select class="form-select"></select>
+            <select class="form-select">
+                {% for cl in clans %}
+                <option value="{{cl[1]}}">{{cl[0]}}</option>
+                {% endfor %}
+            </select>
             <label>Score team 1</label>
-            <input class="input" />
+            <input class="input" type="number" min="1" pattern="^[0-9]+" />
             <label class="mt-4">Team 2</label>
-            <select class="form-select"></select>
+            <select class="form-select">
+                {% for cl in clans %}
+                <option value="{{cl[1]}}">{{cl[0]}}</option>
+                {% endfor %}
+            </select>
             <label>Score team 2</label>
-            <input class="input" />
+            <input class="input" type="number" min="1" pattern="^[0-9]+" />
             <div class="centro">
                 <button class="mt-5 boton btn btn-primary">Register</button>
             </div>
