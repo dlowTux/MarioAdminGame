@@ -374,8 +374,14 @@ class Database:
             print(e)
             return False
 
-
-
-    
+    def StartTournament(self,id_tournament):
+        sql='UPDATE tournament set state=1 where id_tournament=%s'
+        try:
+            self.cursor.execute(sql,(id_tournament))
+            self.connection.commit()
+            return True
+        except Exception as e:
+            print(e)
+            return False
 
 

@@ -240,5 +240,20 @@ def deleteteam(id_tournament,id_team):
                 name=tournaments.Tournament().GetNameTournament(id_tournament)
                 )
     return 'No'
+@app.route('/StartTournament/<id_tournament>')
+def starttournamtn(id_tournament):
+    if g.user:
+        tournaments.Tournament().StartTournament(id_tournament)
+        status=tournaments.Tournament().CheckTournamentStatus(id_tournament)
+        result=tournaments.Tournament().GetTeamTornament(id_tournament)
+        return render_template(
+                'AdminTournament.html',
+                status_p=status,
+                members=result,
+                id_t=id_tournament,
+                name=tournaments.Tournament().GetNameTournament(id_tournament)
+                )
+
+    return 'No'
 if __name__ =='__main__':
     app.run(debug=True)

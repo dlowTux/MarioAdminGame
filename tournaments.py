@@ -1,5 +1,9 @@
 import db
 class Tournament:
+
+    def StartTournament(self,id_tournament):
+        return db.Database().StartTournament(id_tournament)
+    
     def DropTeamTournumant(self,id_tournament,id_clan):
         return db.Database().DropTournamentTeam(id_tournament,id_clan)
 

@@ -9,3 +9,14 @@ if (btnDelete) {
         });
     })
 }
+const btnstart = document.querySelectorAll('.start');
+if (btnstart) {
+    const btnArray = Array.from(btnstart);
+    btnArray.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            if (!confirm('Are you sure you want to start it?')) {
+                e.preventDefault();
+            }
+        });
+    })
+}
