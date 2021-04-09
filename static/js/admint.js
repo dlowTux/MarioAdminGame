@@ -37,6 +37,43 @@ document
             label.classList.add("error");
             log.append(label);
         } else {
-            console.log('Diferentes')
+            var url = '/RegisterClashTournament'
+            if (score1 >= 0 && score2 >= 0) {
+                /* Promesa */
+                const jcadena = JSON.stringify(
+                    {
+                        tournament:
+                            [id_tounament, id_player]
+                    }
+                );
+                fetch(url, {
+                    method: "POST",
+                    body: jcadena,
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                })
+                    .then((resp) => resp.json())
+                    .then((data) => {
+                        //reload the page
+                        if (data["response"] == true) {
+                            window.location.replace("http://localhost:5000/tournament");
+                        } else {
+                            //adding the eror to le log
+                            const label = document.createElement("label");
+                            label.innerText =
+                                "Error the clan was not added to the tournament try again";
+                            label.classList.add("error");
+                            log.append(label);
+                        }
+                    });
+            } else {
+                const label = document.createElement("label");
+                label.innerText =
+                    "Error you can not put a negative score";
+                label.classList.add("error");
+                log.append(label);
+            }
+
         }
     });

@@ -1,5 +1,9 @@
 import db
 class Tournament:
+
+    def RegisterClash(self,id_clan1,id_clan2,ponist1,ponist2):
+        db.Database().RegisterClash(id_clan1,id_clan2,ponist1,ponist2)
+
     def GetClansOfTournament(self,id_tournament):
         return db.Database().GetClansOfTournament(id_tournament)
 

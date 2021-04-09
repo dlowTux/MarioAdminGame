@@ -395,4 +395,12 @@ class Database:
             print(e)
             return []
 
-
+    def RegisterClash(self,id_clan1,id_clan2,ponist1,ponist2):
+        sql='insert into clash_clan values(%s,%s,%s,%s,%s)'
+        try:
+            self.cursor.execute(sql,(id_clan1,id_clan2,ponist1,ponist2))
+            self.connection.commit()
+            return True
+        except Exception as e:
+            print(e)
+            return False

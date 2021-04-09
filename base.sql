@@ -79,19 +79,19 @@ create table rounds(
 
 create table clash_clan
 (
-    id_clash varchar(200) primary key not null,
     id_clan1 varchar(200) not null,
     id_clan2 varchar(200) not null,
-    date_ date not null,
     points_clan1 int not null,
     points_clan2 int not null,
-    rounds int not null,
     id_tournament varchar(200),
+    primary key(id_clan1,id_clan2,id_tournament),
     foreign key (id_tournament) references tournament(id_tournament),
     foreign key (id_clan1) references clan(id_clan),
     foreign key(id_clan2) references clan(id_clan)
 );
- 
+
+
+
 SELECT HEX(AES_ENCRYPT("has_key",'password')) as pass;
 
 insert into user values (
