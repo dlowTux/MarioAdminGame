@@ -262,15 +262,18 @@ def starttournamtn(id_tournament):
                 )
 
     return 'No'
-@app.route('/RegisterClashTournament', methods=['POST'])
-def RegisterClash():
+
+@app.route('/Clash', methods=['POST'])
+def clash():
     if g.user:
         data=request.get_json()
-        id_clan1=data['response'][0]
-        id_clan2=data['response'][1]
-        ponist1=data['response'][2]
-        ponist2=data['response'][3]
-        r=tournaments.Tournament().RegisterClash(id_clan1,id_clan2,ponist1,ponist2)
+        r=tournaments.Tournament().Clash(
+                data['response'][0], #id_clan1
+                data['response'][1], #id_clan2
+                data['response'][2], #id_tournament
+                data['response'][3], #ponist1
+                data['response'][4]  #ponist2
+                )
         return jsonify({'response':r})
     return 'No'
 if __name__ =='__main__':

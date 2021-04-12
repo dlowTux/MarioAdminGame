@@ -1,8 +1,18 @@
 import db
 class Tournament:
+    
+    def Clash(self,id_clan1,id_clan2,id_tournament,ponist1,ponist2):
+        r1=self.CheckIfClashExist(id_clan1,id_clan2,id_tournament)
+        r2=self.CheckIfClashExist(id_clan2,id_clan1,id_tournament)
+        if r1==False and r2==False:
+            result=db.Database().RegisterClash(id_clan1,id_clan2,ponist1,ponist2,id_tournament)
+            return result
+        return False
 
-    def RegisterClash(self,id_clan1,id_clan2,ponist1,ponist2):
-        db.Database().RegisterClash(id_clan1,id_clan2,ponist1,ponist2)
+    def CheckIfClashExist(self,id_clan1,id_clan2,id_tournament):
+        return db.Database().CheckIfClashExist(id_clan1,id_clan2,id_tournament)
+
+    
 
     def GetClansOfTournament(self,id_tournament):
         return db.Database().GetClansOfTournament(id_tournament)

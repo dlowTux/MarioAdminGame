@@ -30,6 +30,7 @@ document
         const score1 = document.getElementById("txtscore1").value;
         const team2 = document.getElementById("txtteam2").value;
         const score2 = document.getElementById("txtscore2").value;
+        const id_tounament = document.getElementById('txt_id_tournament').value;
         if (team1 == team2) {
             const label = document.createElement("label");
             label.innerText =
@@ -37,13 +38,19 @@ document
             label.classList.add("error");
             log.append(label);
         } else {
-            var url = '/RegisterClashTournament'
+            var url = '/Clash'
             if (score1 >= 0 && score2 >= 0) {
                 /* Promesa */
                 const jcadena = JSON.stringify(
                     {
-                        tournament:
-                            [id_tounament, id_player]
+                        response:
+                            [
+                                team1,
+                                team2,
+                                id_tounament,
+                                score1,
+                                score2
+                            ]
                     }
                 );
                 fetch(url, {
@@ -62,7 +69,7 @@ document
                             //adding the eror to le log
                             const label = document.createElement("label");
                             label.innerText =
-                                "Error the clan was not added to the tournament try again";
+                                "Error try again";
                             label.classList.add("error");
                             log.append(label);
                         }

@@ -58,6 +58,7 @@
         {% if status_p==False %}
         <h3 class="mt-5">Clash</h3>
         <form id="formclash">
+            <input id='txt_id_tournament' value="{{id_t}}" type="hidden">
             <label>Team 1</label>
             <select id="txtteam1" class="form-select">
                 {% for cl in clans %}

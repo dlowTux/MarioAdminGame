@@ -395,12 +395,28 @@ class Database:
             print(e)
             return []
 
-    def RegisterClash(self,id_clan1,id_clan2,ponist1,ponist2):
+    def RegisterClash(self,id_clan1,id_clan2,ponist1,ponist2,id_tournament):
         sql='insert into clash_clan values(%s,%s,%s,%s,%s)'
         try:
-            self.cursor.execute(sql,(id_clan1,id_clan2,ponist1,ponist2))
+            self.cursor.execute(sql,(id_clan1,id_clan2,ponist1,ponist2,id_tournament))
             self.connection.commit()
+            return True
+        except Exception as e:
+            
+            print('Error al insertar  ',e)
+            return False
+
+    def CheckIfClashExist(self,id_clan1,id_clan2,id_tournament):
+        sql='select id_tournament from clash_clan where id_clan1 =%s and id_clan2=%s and id_tournament =%s'
+        try:
+            self.cursor.execute(sql,(id_clan1,id_clan2,id_tournament))
+            data=self.cursor.fetchone()
+            if data==None:
+                return False
             return True
         except Exception as e:
             print(e)
             return False
+
+
+
