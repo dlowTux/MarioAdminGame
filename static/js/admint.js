@@ -64,7 +64,7 @@ document
                     .then((data) => {
                         //reload the page
                         if (data["response"] == true) {
-                            window.location.replace("http://localhost:5000/tournament");
+                            window.location.replace("http://localhost:5000/AdminTournament/" + id_tounament);
                         } else {
                             //adding the eror to le log
                             const label = document.createElement("label");
