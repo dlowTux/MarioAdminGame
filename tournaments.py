@@ -1,6 +1,42 @@
 import db
 class Tournament:
-    
+    def GetClashTournament(self,id_tournament):
+        return db.Database().GetClashTournament(id_tournament)
+
+    def GetClahsPlayed(self,id_tournament):
+        #GetAllTheTeamsOFTournaments
+        data=db.Database().GetClansClashTournament(id_tournament)
+        points=[]
+        for team in data:
+            
+            aux=[team[0]]
+            total=0
+            
+            result1=db.Database().GetClahsPlayed(id_tournament,team[1],1)
+            result2=db.Database().GetClahsPlayed(id_tournament,team[1],2)
+            
+            aux1=[]
+            for r in result1:
+                aux1.append(r[0])
+                total+=int(r[0])
+            
+            aux2=[]
+            for r in result2:
+                aux2.append(r[0])
+                total+=int(r[0])
+
+            if len(aux1)>0:
+                aux.append(aux1)
+            elif len(aux2):
+                aux.append(aux2)
+            else:
+                aux.append([])
+            #calculate the sume
+            aux.append(total)
+            points.append(aux)
+        return points
+
+
     def Clash(self,id_clan1,id_clan2,id_tournament,ponist1,ponist2):
         r1=self.CheckIfClashExist(id_clan1,id_clan2,id_tournament)
         r2=self.CheckIfClashExist(id_clan2,id_clan1,id_tournament)

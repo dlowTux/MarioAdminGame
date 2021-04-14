@@ -418,5 +418,39 @@ class Database:
             print(e)
             return False
 
+    def GetClahsPlayed(self,id_tournament,id_clan,option):
+        sql=''
+        if option==1:
+            sql='select points_clan1  from clash_clan where id_clan1=%s and id_tournament =%s'
+        else:
+            sql='select points_clan2  from clash_clan where id_clan2=%s and id_tournament =%s'
+        try:
+            self.cursor.execute(sql,(id_clan,id_tournament))
+            data=self.cursor.fetchall()
+            if data==None:
+                return []
+            return data
+        except Exception as e:
+            print('Error', e)
+            return []
+    def GetClansClashTournament(self,id_tournament):
+        sql='select c.color,c.id_clan from tournament_clans tc inner join clan c on c.id_clan=tc.id_clan where tc.id_tournament=%s'
+        try:
+            self.cursor.execute(sql,(id_tournament))
+            data=self.cursor.fetchall()
+            if data!=None:
+                return data
+        except Exception as e:
+            print(e)
+        return []
 
-
+    def GetClashTournament(self,id_tournament):
+        sql='select c1.color,cc.points_clan1 ,c2.color,cc.points_clan2 from clash_clan cc inner join clan c1 on c1.id_clan=cc.id_clan1 inner join clan c2 on c2.id_clan=cc.id_clan2 where cc.id_tournament=%s'
+        try:
+            self.cursor.execute(sql,(id_tournament))
+            data=self.cursor.fetchall()
+            if data!=None:
+                return data
+        except Exception as e:
+            print(e)
+        return []

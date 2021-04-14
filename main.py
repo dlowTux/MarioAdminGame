@@ -220,11 +220,22 @@ def admintournament(id_tournament):
     status=tournaments.Tournament().CheckTournamentStatus(id_tournament)
     result=tournaments.Tournament().GetTeamTornament(id_tournament)
     teams=tournaments.Tournament().GetTeamTornament(id_tournament)
+    tournaments.Tournament().GetClahsPlayed(id_tournament)
+    points=tournaments.Tournament().GetClahsPlayed(id_tournament)
+    rows=0
+    clash=tournaments.Tournament().GetClashTournament(id_tournament)
+
+    for p in points:
+        if len(p[1])>rows:
+            rows=len(p[1])
     return render_template(
             'AdminTournament.html',
             status_p=status,
+            clashes=clash,
+            row=rows,
             members=result,
             clans=teams,
+            scores=points,
             id_t=id_tournament,
             name=tournaments.Tournament().GetNameTournament(id_tournament)
             )
