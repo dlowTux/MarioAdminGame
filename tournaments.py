@@ -8,10 +8,8 @@ class Tournament:
         data=db.Database().GetClansClashTournament(id_tournament)
         points=[]
         for team in data:
-            
             aux=[team[0]]
             total=0
-            
             result1=db.Database().GetClahsPlayed(id_tournament,team[1],1)
             result2=db.Database().GetClahsPlayed(id_tournament,team[1],2)
             
@@ -19,21 +17,21 @@ class Tournament:
             for r in result1:
                 aux1.append(r[0])
                 total+=int(r[0])
-            
-            aux2=[]
+
             for r in result2:
-                aux2.append(r[0])
+                aux1.append(r[0])
                 total+=int(r[0])
 
-            if len(aux1)>0:
-                aux.append(aux1)
-            elif len(aux2):
-                aux.append(aux2)
+            if len(aux1)>0 :
+
+                if len(aux1)>0:
+                    aux.append(aux1)
+
             else:
                 aux.append([])
             #calculate the sume
-            aux.append(total)
             points.append(aux)
+            aux.append(total)
         return points
 
 

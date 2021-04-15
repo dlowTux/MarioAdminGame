@@ -228,6 +228,12 @@ def admintournament(id_tournament):
     for p in points:
         if len(p[1])>rows:
             rows=len(p[1])
+    #ading the the same numbers of columns to every row
+    for p in points:
+        if len(p[1])<rows:
+            while (len(p[1])<rows):
+                p[1].append('0')
+
     return render_template(
             'AdminTournament.html',
             status_p=status,

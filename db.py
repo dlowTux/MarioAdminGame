@@ -421,6 +421,7 @@ class Database:
     def GetClahsPlayed(self,id_tournament,id_clan,option):
         sql=''
         if option==1:
+        
             sql='select points_clan1  from clash_clan where id_clan1=%s and id_tournament =%s'
         else:
             sql='select points_clan2  from clash_clan where id_clan2=%s and id_tournament =%s'
