@@ -293,5 +293,4 @@ def clash():
                 )
         return jsonify({'response':r})
     return 'No'
-if __name__ =='__main__':
-    app.run(debug=True)
+

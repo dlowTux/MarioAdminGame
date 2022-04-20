@@ -3,8 +3,8 @@ class Database:
     
     def __init__(self):
         self.connection = pymysql.connect(
-            host='localhost',
-            user='usuario',
+            host='mariadb',
+            user='root',
             password='password',
             db='mariogame'
         )
